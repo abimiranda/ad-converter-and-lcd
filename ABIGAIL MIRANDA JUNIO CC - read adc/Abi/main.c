@@ -1,13 +1,7 @@
-/**************************
- * File:   main.c                                                           *
- * Author: Esteban Lemos                                                    *
- * Created on 5 de febrero de 2014, 20:49                                   *
- * En caso de necesitar el proyecto completo ingresar en                    *
- * https://github.com/EEST1/Plantilla_6to                                   *
- **************************/
 
 
-// PARPADEO DEL LED                        PLANTILLA TP //
+
+// muestreo de peso con conversor ad y pantalla lcd                 //
 #include <xc.h>
 #include "confbits.h"       //no se debe de modificar este archivo para
 //garantizar el funcionamiento del BOOTLOADER
@@ -16,7 +10,7 @@
 
 #include "ConfShield2_1.h" //cambiar para el teclado // esta viene x defecto
 //el teclado utiliza los mismos pines que el entrenador pero la
-//incializaci¥on esta disponible en el Shield1.3 no en el 2.1.
+//incializaci¬¥on esta disponible en el Shield1.3 no en el 2.1.
 #include "ConfShield1_3.h"
 #include "lcd.h"
 #include "teclado.h"
@@ -61,7 +55,7 @@ void __interrupt myISR(void) {
     //TIMMER 1 PARA SEGUNDOS
     if (TMR0IF == 1) { //termino termino de contar el timer?
         TMR0IF = 0; //bajamos el flag
-        TMR0L = 0xD2; //el timer contar· 47 fosc/4 * 256 = 12032 * 0,0833us
+        TMR0L = 0xD2; //el timer contar√° 47 fosc/4 * 256 = 12032 * 0,0833us
         TMR0H = 0x48; //en total aprox 1.0022ms  casi 1ms
           //    des =~ des;
  
@@ -73,7 +67,7 @@ void __interrupt myISR(void) {
 
     if (TMR1IF == 1) { //TIMER 1 PARA ms
         TMR1IF = 0; //bajamos el flag
-        TMR1L = 0x1B; //el timer contar· 1200 fosc/4 * 1 = 12032 * 0,0833us
+        TMR1L = 0x1B; //el timer contar√° 1200 fosc/4 * 1 = 12032 * 0,0833us
         TMR1H = 0xD1; //en total aprox 99.96us  casi 100us
         tic_teclado();
         tic_LCD();
@@ -89,10 +83,10 @@ void __interrupt myISR(void) {
 
 
 long int readADC() { // en esta funcion guardo el valor deladc en kilos.
-    guarda_ADC = obtener_ADC10(); //ac· llamo a la dfuncion y guardo el valor en una variable
+    guarda_ADC = obtener_ADC10(); //ac√° llamo a la dfuncion y guardo el valor en una variable
     kilos = (guarda_ADC * 999.9) / 1023; // para esto hago la regla de 3simples.
     //5v son 999900gr, o sea, 999.9kilos.
-    //entonces si 999.9kg son 1023bits (pq ahora el conversor est· en 10 bits tengo 1023 posiciones))
+    //entonces si 999.9kg son 1023bits (pq ahora el conversor est√° en 10 bits tengo 1023 posiciones))
     // (x*999.9kg)/1023= valor de bits 
     return kilos;
 }
