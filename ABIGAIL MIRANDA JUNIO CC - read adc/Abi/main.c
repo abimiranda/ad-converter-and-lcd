@@ -1,3 +1,8 @@
+/**************************
+ * File:   main.c                                                           *
+ * Author: Abigail Miranda                                                    *
+ **************************/
+
 // muestreo de peso con conversor ad y pantalla lcd                 //
 #include <xc.h>
 #include "confbits.h"       //no se debe de modificar este archivo para
